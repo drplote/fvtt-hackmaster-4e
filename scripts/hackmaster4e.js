@@ -1,10 +1,10 @@
-import { OsricActorOverrides } from './Overrides/actor-overrides.js';
+import { ARSActorOverrides } from './Overrides/actor-overrides.js';
 import { HackmasterCharacterSheet } from "./hackmaster-character-sheet.js";
 import { HackmasterItemSheet } from './hackmaster-item-sheet.js';
 import { Hackmaster } from './config.js';
 import { AlwaysHpSupport } from './always-hp-support.js';
-import { OsricCombatTrackerOverrides } from './Overrides/combat-tracker-overrides.js';
-import { OsricCombatOverrides } from './Overrides/combat-overrides.js';
+import { ARSCombatTrackerOverrides } from './Overrides/combat-tracker-overrides.js';
+import { ARSCombatOverrides } from './Overrides/combat-overrides.js';
 import { HackmasterChatCommands } from './Modules/hackmaster-chat-commands.js';
 import { Utilities } from './utilities.js';
 import { HackmasterSettings } from './Modules/hackmaster-settings.js';
@@ -38,7 +38,7 @@ function listenForGmCommands(){
   });
 }
 
-function updateOsricConfig(){
+function updateARSConfig(){
   CONFIG.ARS.icons.general.actors['npc'] = 'icons/svg/mystery-man-black.svg';
 }
 
@@ -54,12 +54,12 @@ Hooks.once('init', function() {
 
   CONFIG.Hackmaster = Hackmaster;
 
-  updateOsricConfig();
-  OsricActorOverrides.initialize();
+  updateARSConfig();
+  ARSActorOverrides.initialize();
   HackmasterCharacterSheet.initialize();
-  OsricCombatTrackerOverrides.initialize();
+  ARSCombatTrackerOverrides.initialize();
   AlwaysHpSupport.initialize();
-  OsricCombatOverrides.initialize();
+  ARSCombatOverrides.initialize();
   HackmasterChatCommands.initialize();
   HackmasterItemSheet.initialize();
   HackmasterSettings.initialize();
@@ -72,10 +72,10 @@ Hooks.once('init', function() {
 
 //   // Define the config for our package
 //   const config = {
-//       packageName: "osric",
+//       packageName: "ARS",
 //       sheetClasses: [
 //           {
-//               name: "OSRICItemSheet", // this _must_ be the class name of the `Application` you want it to apply to
+//               name: "ARSItemSheet", // this _must_ be the class name of the `Application` you want it to apply to
 //               fieldConfigs: [
 //                   {
 //                       selector: `input[type="text"]`, // this targets all text input fields on the "details" tab. Any css selector should work here.
@@ -87,7 +87,7 @@ Hooks.once('init', function() {
 //               ]
 //           },
 //           {
-//             name: "OSRICCharacterSheet", // this _must_ be the class name of the `Application` you want it to apply to
+//             name: "ARSCharacterSheet", // this _must_ be the class name of the `Application` you want it to apply to
 //             fieldConfigs: [
 //                 {
 //                     selector: `input[type="text"]`, // this targets all text input fields on the "details" tab. Any css selector should work here.
@@ -99,7 +99,7 @@ Hooks.once('init', function() {
 //             ]
 //           },
 //           {
-//             name: "OSRICNPCSheet", // this _must_ be the class name of the `Application` you want it to apply to
+//             name: "ARSNPCSheet", // this _must_ be the class name of the `Application` you want it to apply to
 //             fieldConfigs: [
 //                 {
 //                     selector: `input[type="text"]`, // this targets all text input fields on the "details" tab. Any css selector should work here.

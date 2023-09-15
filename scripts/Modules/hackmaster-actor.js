@@ -4,12 +4,12 @@ import { HonorCalculator } from "./honor-calculator.js";
 
 export class HackmasterActor {
 
-    constructor(osricActor) {
-        this._osricActor = osricActor;
+    constructor(ARSActor) {
+        this._ARSActor = ARSActor;
     }
 
     getItems(){
-        let items = this._osricActor?.items ?? [];
+        let items = this._ARSActor?.items ?? [];
         return items.map(i => new HackmasterItem(i));
     }
 
@@ -26,24 +26,24 @@ export class HackmasterActor {
     }
 
     get isProtegee(){
-        return this._osricActor?.system?.isProtegee ?? false;
+        return this._ARSActor?.system?.isProtegee ?? false;
     }
 
     get temporaryHonor(){
-        return this._osricActor?.system?.honor?.temp ?? 0;
+        return this._ARSActor?.system?.honor?.temp ?? 0;
     }
 
     get honor() {
-        return this._osricActor?.system?.honor?.value ?? 0;
+        return this._ARSActor?.system?.honor?.value ?? 0;
     }
 
     
     get comeliness(){
-        return this._osricActor?.system?.comeliness?.value ?? 10;
+        return this._ARSActor?.system?.comeliness?.value ?? 10;
     }
 
     get comelinessPercent(){
-        return this._osricActor?.system?.comeliness?.percent ?? 0;
+        return this._ARSActor?.system?.comeliness?.percent ?? 0;
     }
 
     get comelinessDescription(){
@@ -52,19 +52,19 @@ export class HackmasterActor {
     }
 
     get effectiveLevel() {
-        return this._osricActor?.effectiveLevel ?? 0;
+        return this._ARSActor?.effectiveLevel ?? 0;
     }
 
     get isNpc() {
-        return this._osricActor?.type == 'npc';
+        return this._ARSActor?.type == 'npc';
     }
 
     get thac0(){
-        return this._osricActor?.system?.attributes?.thaco?.value ?? 20;
+        return this._ARSActor?.system?.attributes?.thaco?.value ?? 20;
     }
 
     get armorClass(){
-        return this._osricActor?.system?.armorClass ?? [];
+        return this._ARSActor?.system?.armorClass ?? [];
     }
 
     getArmorClass(type){
@@ -77,7 +77,7 @@ export class HackmasterActor {
 
    
     get size(){
-        return this._osricActor?.system?.attributes?.size ?? 'medium';
+        return this._ARSActor?.system?.attributes?.size ?? 'medium';
     }
 
     get sizeCategory(){
@@ -102,7 +102,7 @@ export class HackmasterActor {
     }
 
     get rawHonorState(){
-        return this._osricActor?.system?.honorState ?? 0
+        return this._ARSActor?.system?.honorState ?? 0
     }
 
     getHonorState() {
@@ -133,15 +133,15 @@ export class HackmasterActor {
     }
 
     get thresholdOfPain(){
-        return Math.floor((this._osricActor?.system?.attributes?.hp?.max ?? 0) / 2);
+        return Math.floor((this._ARSActor?.system?.attributes?.hp?.max ?? 0) / 2);
     }
 
     get recentDamageTaken(){
-        return this._osricActor?.system?.recentDamage ?? 0;
+        return this._ARSActor?.system?.recentDamage ?? 0;
     }
 
     async setRecentDamageTaken(amount){
-        if (this._osricActor){
+        if (this._ARSActor){
             await Utilities.runAsGM({
                 operation: 'updateActor',
                 targetActorId: this.isNpc ? null : this.actorId,
@@ -154,7 +154,7 @@ export class HackmasterActor {
     }
 
     get isDead(){
-        return this._osricActor?.isDead ?? false;
+        return this._ARSActor?.isDead ?? false;
     }
 
     async recordDamageTaken(amount){
@@ -170,14 +170,14 @@ export class HackmasterActor {
     }
 
     get name() {
-        return this._osricActor?.getName() ?? '';
+        return this._ARSActor?.getName() ?? '';
     }
 
     get actorId(){
-        return this._osricActor?.id;
+        return this._ARSActor?.id;
     }
 
     get tokenId(){
-        return this._osricActor?.token?.id;
+        return this._ARSActor?.token?.id;
     }
 }

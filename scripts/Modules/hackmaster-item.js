@@ -2,12 +2,12 @@ import { ArmorInfo } from "./armor-info.js";
 
 export class HackmasterItem{
 
-    constructor(osricItem){
-        this._osricItem = osricItem;
+    constructor(ARSItem){
+        this._ARSItem = ARSItem;
     }
 
     get type(){
-        return this._osricItem?.type;
+        return this._ARSItem?.type;
     }
 
     get isArmor(){
@@ -15,7 +15,7 @@ export class HackmasterItem{
     }
 
     get protectionType(){
-        return this._osricItem?.system?.protection?.type;
+        return this._ARSItem?.system?.protection?.type;
     }
 
     get isShield(){
@@ -23,22 +23,22 @@ export class HackmasterItem{
     }
 
     get isEquipped(){
-        return this._osricItem?.system?.location?.state == game.osric.library.const.location.EQUIPPED;        
+        return this._ARSItem?.system?.location?.state == game.ars.library.const.location.EQUIPPED;        
     }
 
     get isMagic() {
-        return this._osricItem?.isMagic ?? false;
+        return this._ARSItem?.isMagic ?? false;
     }
 
     getArmorInfo(){
         if (this.isArmor || this.isShield){
-            return new ArmorInfo(this._osricItem);
+            return new ArmorInfo(this._ARSItem);
         }
         return null;
     }
 
     get rawDamageData(){
-        return this._osricItem?.system?.damage ?? {};
+        return this._ARSItem?.system?.damage ?? {};
     }
 
     getDamageForSizeCategory(sizeCategory){

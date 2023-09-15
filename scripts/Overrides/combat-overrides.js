@@ -1,17 +1,18 @@
 import { HackmasterCombatManager } from '../Modules/hackmaster-combat-manager.js';
 import { libWrapper } from '../shim.js';
+//import * from '../dice/dice.js'
 
-export class OsricCombatOverrides {
+export class ARSCombatOverrides {
     static initialize(){
-        OsricCombatOverrides.overrideDamageRoll();
-		OsricCombatOverrides.overrideAttackRoll();
-		OsricCombatOverrides.overrideApplyDamageAdjustments();
-		OsricCombatOverrides.overrideSendHealthAdjustChatCard();
-		OsricCombatOverrides.overrideGetDamageFormulas();
+        ARSCombatOverrides.overrideDamageRoll();
+		ARSCombatOverrides.overrideAttackRoll();
+		ARSCombatOverrides.overrideApplyDamageAdjustments();
+		ARSCombatOverrides.overrideSendHealthAdjustChatCard();
+		ARSCombatOverrides.overrideGetDamageFormulas();
 	}
 
 	static overrideGetDamageFormulas(){
-		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.osric.diceManager.adjustHPRoll', async function(wrapped, ...args) {
+		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.ars.diceManager.adjustHPRoll', async function(wrapped, ...args) {
 			let dd = args[0];
 			let targetToken = args.length > 1 ? args[1] : null;
 			HackmasterCombatManager.replaceDamageForCorrectSize(dd, targetToken);
@@ -20,7 +21,7 @@ export class OsricCombatOverrides {
 	}
 
 	static overrideSendHealthAdjustChatCard(){
-		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.osric.combatManager.sendHealthAdjustChatCard', async function(wrapped, ...args) {
+		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.ars.combatManager.sendHealthAdjustChatCard', async function(wrapped, ...args) {
 			await wrapped(...args);
 
 			let targetToken = args[1];
@@ -38,7 +39,7 @@ export class OsricCombatOverrides {
 			HackmasterCombatManager.applyHonorToAttackRoll(dd, bonusFormula, additionalRollData);
 		});
 
-		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.osric.diceManager.osricAttackRoll', async function(wrapped, ...args) {
+		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.ars.diceManager.systemAttackRoll', async function(wrapped, ...args) {
 			let roll = await wrapped(...args);
 			let dd = args[0];
 			let targetToken = args[1];
@@ -50,14 +51,14 @@ export class OsricCombatOverrides {
 	}
 
     static overrideDamageRoll(){
-		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.osric.combatManager.getRolledDamage', async function(wrapped, ...args) {
+		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.ars.combatManager.getRolledDamage', async function(wrapped, ...args) {
 			await wrapped(...args);
 			HackmasterCombatManager.applyHonorToDamageRoll(args[0]);			
 		}, 'WRAPPER');
 	}
 
 	static overrideApplyDamageAdjustments(){
-		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.osric.combatManager.applyDamageAdjustments', async function(wrapped, ...args) {
+		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'game.ars.combatManager.applyDamageAdjustments', async function(wrapped, ...args) {
 			let result = await wrapped(...args);
 			return await HackmasterCombatManager.applyArmorSoak(result, ...args);			
 		}, 'WRAPPER');

@@ -6,11 +6,11 @@ export class ArmorInfo{
 	}
 
     getFlag(flag){
-        return this._itemData.getFlag("osric", flag);
+        return this._itemData.getFlag("ars", flag);
     }
 
     setFlag(flag, value){
-        return this._itemData.setFlag("osric", flag, value);
+        return this._itemData.setFlag("ars", flag, value);
     }
 
     toggleFlag(flag){
@@ -101,7 +101,7 @@ export class ArmorInfo{
     }
 
     get isEquipped(){
-        const locationState = game.osric.library.const.location;
+        const locationState = game.ars.library.const.location;
         return this._itemData?.system?.location?.state == locationState.EQUIPPED;
     }
 

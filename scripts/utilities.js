@@ -38,7 +38,7 @@ export class Utilities {
             content: content,
             user: game.user.id,
             speaker: sourceSpeaker,
-            type: type ?? game.osric.const.CHAT_MESSAGE_TYPES.OTHER,
+            type: type ?? game.ars.const.CHAT_MESSAGE_TYPES.OTHER,
         };
         ChatMessage.create(chatData);
     }
@@ -137,11 +137,11 @@ export class Utilities {
         } else
             // check to see if the GM we found is the person we've emit'd to and if so run command.
             if (findGM.id === game.user.id) {
-                if (!game.osric.runAsGMRequestIds[data.requestId]) {
+                if (!game.ars.runAsGMRequestIds[data.requestId]) {
    
                     // We do this to make sure the command is only run once if more than 
                     // one GM is on the server
-                    game.osric.runAsGMRequestIds[data.requestId] = data.requestId;
+                    game.ars.runAsGMRequestIds[data.requestId] = data.requestId;
     
                     /**
                      * "data" is serialized and deserialized so the type is lost.

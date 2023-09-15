@@ -1,7 +1,7 @@
 import { libWrapper } from '../shim.js';
 import { Hackmaster } from '../config.js';
 
-export class OsricActorOverrides {
+export class ARSActorOverrides {
 
 	static initialize(){
 		this.overrideStatBonuses();
@@ -46,7 +46,7 @@ export class OsricActorOverrides {
   
 		libWrapper.register(CONFIG.Hackmaster.MODULE_ID, 'CONFIG.Actor.documentClass.prototype._buildAbilityFields', (function() {
 			return function(data) {
-				OsricActorOverrides._buildAbilityFields(data);
+				ARSActorOverrides._buildAbilityFields(data);
 			};
 		})(), 'OVERRIDE');
 	}

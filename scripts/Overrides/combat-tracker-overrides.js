@@ -2,11 +2,11 @@ import { HackmasterActor } from '../Modules/hackmaster-actor.js';
 import { HackmasterCombatManager } from '../Modules/hackmaster-combat-manager.js';
 import { HackmasterSettings } from '../Modules/hackmaster-settings.js';
 
-export class OsricCombatTrackerOverrides {
+export class ARSCombatTrackerOverrides {
 	static initialize(){
-		OsricCombatTrackerOverrides.overrideUpdateCombat();
-    OsricCombatTrackerOverrides.overrideProcessOngoingHealthAdjustments();
-    OsricCombatTrackerOverrides.overrideCombatRollInitiative();
+		ARSCombatTrackerOverrides.overrideUpdateCombat();
+    		ARSCombatTrackerOverrides.overrideProcessOngoingHealthAdjustments();
+    		ARSCombatTrackerOverrides.overrideCombatRollInitiative();
 	}
 
   static overrideCombatRollInitiative(){
